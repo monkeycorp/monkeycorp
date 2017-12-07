@@ -4,11 +4,19 @@
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
+
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/monkeycorp/php-sdk-meli.git"
+        }
+    ],
     "require": {
         "php": ">=7.0.0",
         "fideloper/proxy": "~3.3",
         "laravel/framework": "5.5.*",
-        "laravel/tinker": "~1.0"
+        "laravel/tinker": "~1.0",
+        "lscortesc/php-sdk-meli":"dev-feature/connection"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
@@ -53,4 +61,6 @@
         "sort-packages": true,
         "optimize-autoloader": true
     }
+
+
 }
