@@ -10,5 +10,7 @@ Route::get('/auth', 'AuthController@auth');
 
 Route::prefix('users')->group(function() {
 
-    Route::get('me', 'UserController@me');
+    Route::get('me', 'UserController@me')
+        ->name('meliUsersMe');
+    
 });

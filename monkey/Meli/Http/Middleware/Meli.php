@@ -6,14 +6,32 @@ use Closure;
 use Carbon\Carbon;
 use MercadoLibre\Authentication\Auth;
 use Illuminate\Support\Facades\Session;
-use MercadoLibre\Endpoints\Api;
+use Monkeycorp\Meli\Repositories\MeliRepository;
 
+/**
+ * Class Meli
+ * @package Monkeycorp\Meli\Http\Middleware
+ */
 class Meli
 {
     /**
      * @var Session
      */
     private $session;
+
+    /**
+     * @var MeliRepository
+     */
+    protected $meli;
+
+    /**
+     * Meli constructor.
+     * @param MeliRepository $meli
+     */
+    public function __construct(MeliRepository $meli)
+    {
+        $this->meli = $meli;
+    }
 
     /**
      * Handle an incoming request.
@@ -34,10 +52,15 @@ class Meli
             return response()->redirectToRoute('LoginMercadoLibre');
         }
 
-        $auth = $this->generateAuth();
-        $api = $this->makeApi($auth);
+        $credentials = $this->getCredentials();
+        $auth = $this->meli->createAuth(
+            $credentials['clientId'],
+            $credentials['clientSecret'],
+            $credentials['site'],
+            $credentials['options']
+        );
 
-        $request->attributes->add(['api' => $api]);
+        app()->instance(Auth::class, $auth);
 
         return $next($request);
     }
@@ -51,28 +74,22 @@ class Meli
     }
 
     /**
-     * @return Auth
+     * Get Credentials to create Auth
+     *
+     * @return array
      */
-    private function generateAuth(): Auth
+    private function getCredentials(): array
     {
-        return new Auth(
-            env('MELI_CLIENT_ID'),
-            env('MELI_CLIENT_SECRET'),
-            env('MELI_SITE'), [
+        return [
+            'clientId' => env('MELI_CLIENT_ID'),
+            'clientSecret' => env('MELI_CLIENT_SECRET'),
+            'site' => env('MELI_SITE'),
+            'options' => [
                 'redirectUri' => env('MELI_REDIRECT_URI'),
                 'accessToken' => $this->session->accessToken,
                 'refreshToken' => $this->session->refreshToken,
                 'userId' => $this->session->userId
             ]
-        );
-    }
-
-    /**
-     * @param Auth $auth
-     * @return Api
-     */
-    protected function makeApi(Auth $auth): Api
-    {
-        return new Api($auth);
+        ];
     }
 }

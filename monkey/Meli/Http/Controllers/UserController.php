@@ -3,7 +3,7 @@
 namespace Monkeycorp\Meli\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Symfony\Component\HttpFoundation\Request;
+use Monkeycorp\Meli\Repositories\MeliRepository;
 
 /**
  * Class UserController
@@ -12,14 +12,20 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller
 {
     /**
-     * @param Request $request
+     * UserController constructor.
+     */
+    public function __construct()
+    {
+        $this->middleware('meli');
+    }
+
+    /**
+     * @param MeliRepository $meli
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function me(Request $request)
+    public function me(MeliRepository $meli)
     {
-        $me = $request->get('api')
-            ->users()
-            ->getMe();
+        $me = $meli->api()->users()->getMe();
 
         return view('meli.me', [
             'me' => $me

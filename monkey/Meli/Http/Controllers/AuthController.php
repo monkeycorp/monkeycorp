@@ -5,8 +5,10 @@ namespace Monkeycorp\Meli\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\RedirectResponse;
 use MercadoLibre\Authentication\Auth;
 use Monkeycorp\Meli\Http\Requests\AuthRequest;
+use Monkeycorp\Meli\Repositories\MeliRepository;
 
 /**
  * Class AuthController
@@ -20,11 +22,19 @@ class AuthController extends Controller
     private $auth;
 
     /**
-     * AuthController constructor.
+     * @var MeliRepository
      */
-    public function __construct()
+    protected $meli;
+
+    /**
+     * AuthController constructor.
+     * @param MeliRepository $meli
+     */
+    public function __construct(MeliRepository $meli)
     {
-        $this->auth = new Auth(
+        $this->meli = $meli;
+
+        $this->auth = $this->meli->createAuth(
             env('MELI_CLIENT_ID'),
             env('MELI_CLIENT_SECRET'),
             env('MELI_SITE'), [
@@ -50,7 +60,7 @@ class AuthController extends Controller
      * @param AuthRequest $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-    public function auth(AuthRequest $request)
+    public function auth(AuthRequest $request): RedirectResponse
     {
         $code = $request->get('code');
         $this->auth->authorize($code);
