@@ -23,8 +23,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
-
         parent::boot();
     }
 
@@ -39,7 +37,18 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapWebRoutes();
 
-        //
+        $this->mapMeliRoutes();
+    }
+
+    /**
+     * Routes to MercadoLibre
+     */
+    protected function mapMeliRoutes()
+    {
+        Route::middleware('web')
+            ->prefix('mercado-libre')
+            ->namespace('Monkeycorp\Meli\Http\Controllers')
+            ->group(base_path('routes/meli.php'));
     }
 
     /**
