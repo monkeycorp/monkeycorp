@@ -9,15 +9,12 @@
             </button>
             <a class="navbar-brand" href="{{ route('LoginMercadoLibre') }}">
                 <img src="https://http2.mlstatic.com/ui/navigation/3.0.1/mercadolibre/logo__large.png"
-                     alt="" class="responsive" style="display: inline; max-height: 120%">
+                     alt="" class="img-responsive" style="display: inline; max-height: 130%">
             </a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Settings</a></li>
-                <li><a href="#">Profile</a></li>
-                <li><a href="#">Help</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="true">

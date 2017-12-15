@@ -25,9 +25,28 @@ class UserController extends Controller
      */
     public function me(MeliRepository $meli)
     {
+        $userId = $meli->auth()->getUserId();
+
+        $me = $meli->api()->users()->getMe();
+        $payments = $meli->api()->users()->getAcceptedPaymentMethods($userId);
+        $address = $meli->api()->users()->getAddresses();
+        $listingTypes = $meli->api()->users()->getAvailableListingTypes();
+        $brands = $meli->api()->users()->getBrands($userId);
+
+        return view('meli.users.me', [
+            'me' => $me,
+            'payments' => $payments,
+            'address' => $address,
+            'listingTypes' => $listingTypes,
+            'brands' => $brands
+        ]);
+    }
+
+    public function showUpdateMe(MeliRepository $meli)
+    {
         $me = $meli->api()->users()->getMe();
 
-        return view('meli.me', [
+        return view('meli.users.updateMe', [
             'me' => $me
         ]);
     }

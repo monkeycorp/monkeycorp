@@ -873,16 +873,17 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/monkeycorp/php-sdk-meli.git",
-                "reference": "6e6129af4a7f43c732285aaebfe42c38399148c8"
+                "reference": "6bee5774fbe67c764755e31881c2851f92cf0e3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/monkeycorp/php-sdk-meli/zipball/6e6129af4a7f43c732285aaebfe42c38399148c8",
-                "reference": "6e6129af4a7f43c732285aaebfe42c38399148c8",
+                "url": "https://api.github.com/repos/monkeycorp/php-sdk-meli/zipball/6bee5774fbe67c764755e31881c2851f92cf0e3a",
+                "reference": "6bee5774fbe67c764755e31881c2851f92cf0e3a",
                 "shasum": ""
             },
             "require": {
                 "guzzlehttp/guzzle": "^6.3",
+                "nesbot/carbon": "^1.22",
                 "php": ">=7.0.0"
             },
             "require-dev": {
@@ -919,7 +920,7 @@
                 "php",
                 "sdk"
             ],
-            "time": "2017-12-07T06:19:52+00:00"
+            "time": "2017-12-14T20:48:49+00:00"
         },
         {
             "name": "monolog/monolog",

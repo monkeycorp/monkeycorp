@@ -12,5 +12,6 @@ Route::prefix('users')->group(function() {
 
     Route::get('me', 'UserController@me')
         ->name('meliUsersMe');
-    
+    Route::get('me/update', 'UserController@showUpdateMe')
+        ->name('meliUsersShowUpdateMe');
 });

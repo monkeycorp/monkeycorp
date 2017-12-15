@@ -33,7 +33,17 @@ class MeliRepository
         string $clientSecret,
         string $site,
         array $options = []
-    ) {
+    ): Auth {
         return new Auth($clientId, $clientSecret, $site, $options);
+    }
+
+    /**
+     * Instance of Auth
+     *
+     * @return Auth
+     */
+    public function auth(): Auth
+    {
+        return app()->make(Auth::class);
     }
 }
