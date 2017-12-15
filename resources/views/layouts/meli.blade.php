@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/zenburn.min.css">
+    <link rel="shortcut icon" href="{{ asset('img/favicon.ico') }}">
 </head>
 <body>
 <div id="app">

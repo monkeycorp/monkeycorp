@@ -22,6 +22,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('meli.users.me') }}">Me</a></li>
+                        <li><a href="{{ route('meli.users.me') }}">Search</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>
