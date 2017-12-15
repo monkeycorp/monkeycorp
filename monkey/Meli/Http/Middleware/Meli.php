@@ -43,13 +43,13 @@ class Meli
     public function handle($request, Closure $next)
     {
         if (! session()->exists('meli')) {
-            return response()->redirectToRoute('LoginMercadoLibre');
+            return response()->redirectToRoute('meli.login');
         }
 
         $this->session = (object) session()->get('meli');
 
         if (! $this->isTokenAvailable()) {
-            return response()->redirectToRoute('LoginMercadoLibre');
+            return response()->redirectToRoute('meli.login');
         }
 
         $credentials = $this->getCredentials();

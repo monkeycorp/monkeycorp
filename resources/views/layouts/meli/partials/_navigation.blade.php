@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ route('LoginMercadoLibre') }}">
+            <a class="navbar-brand" href="{{ route('meli.login') }}">
                 <img src="https://http2.mlstatic.com/ui/navigation/3.0.1/mercadolibre/logo__large.png"
                      alt="" class="img-responsive" style="display: inline; max-height: 130%">
             </a>
@@ -21,7 +21,7 @@
                         Users <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ route('meliUsersMe') }}">Me</a></li>
+                        <li><a href="{{ route('meli.users.me') }}">Me</a></li>
                         <li><a href="#">Another action</a></li>
                         <li><a href="#">Something else here</a></li>
                         <li role="separator" class="divider"></li>

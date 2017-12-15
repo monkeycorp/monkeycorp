@@ -21,7 +21,7 @@
                         <strong>My Data - Request</strong>
                         <code>/users/me</code>
                     </h4>
-                    <a href="{{ route('meliUsersShowUpdateMe') }}" class="btn btn-sm btn-primary">
+                    <a href="{{ route('meli.users.me.update') }}" class="btn btn-sm btn-primary">
                         Update my profile
                     </a>
                     <hr>
@@ -70,7 +70,15 @@
                         <code>/users/{{ $me->id }}/adresses</code>
                     </p>
                     <hr>
-                    @melitable($address->results[0])
+                    @if (count($address->results) > 0)
+                        @melitable($address->results[0])
+                    @endif
+
+                    @if (count($address->results) < 1)
+                        <p class="text-danger text-center">
+                            <strong>Address Not Found</strong>
+                        </p>
+                    @endif
                 </div>
             </div>
             <div class="row">
@@ -91,7 +99,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($listingTypes->available as $listingType)
+                                @foreach ($listingTypes->available as $listingType)
                                     <tr>
                                         <td>{{ $listingType->id }}</td>
                                         <td>{{ $listingType->name }}</td>
